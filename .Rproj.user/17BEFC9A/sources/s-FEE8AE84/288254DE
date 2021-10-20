@@ -1,0 +1,28 @@
+{
+    "id": "288254DE",
+    "path": null,
+    "project_path": null,
+    "type": "object_explorer",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1634695916899.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "id": "b2f712d3a8244791a69967bfbc0a5be7",
+        "name": "cd4_ClustalW",
+        "title": "cd4_ClustalW",
+        "language": "R",
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 2293137716216,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1634695916899,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,28 @@
+---
+title: "Multisequence alighment"
+author: "Rafael Villasmil"
+date: "10/16/2021"
+output: pdf_document
+---
+
+```{r install-packages, echo=FALSE}
+install.packages("ape")
+install.packages("seqinr")
+```
+
+```{r load-packages}
+#library(ape)
+#library(seqinr)
+library(Biostrings)
+library(msa)
+```
+
+```{r read-fasta-files-from-ncbi}
+```
+
+```{r load_alignt_MSA}
+cd4_stringset <- readDNAStringSet(list.files(pattern = "fa"))
+cd4_ClustalW <- msa(cd4_stringset, method="ClustalW")
+
+```
+
