@@ -1,0 +1,43 @@
+---
+title: "Trying to align sequences"
+author: "R. Villasmil"
+date: "10/19/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library(ape)
+if (!requireNamespace("BiocManager", quietly=TRUE))
+install.packages("BiocManager")
+BiocManager::install("msa")
+library(seqinr)
+library(Biostrings)
+```
+```{r load_sequences}
+data.file <- "~/Documents/GitHub/cd4-aligment-nj/data/NC_000012.12[6784836..6825489].fa"
+file.path()
+human <- system.file(package="Biostrings", "extdata", "~/data/NC_000012.12[6784836..6825489].fa")
+
+setwd("~/Documents/GitHub/cd4-aligment-nj/data")
+CD4_sequences <- readDNAStringSet("~/Documents/GitHub/cd4-aligment-nj/data", format="fasta",
+               nrec=-1L, skip=0L, seek.first.rec=FALSE,
+               use.names=TRUE, with.qualities=FALSE)
+
+fasta.seqlengths("~/Documents/GitHub/cd4-aligment-nj/data")
+
+DNAStringSet()
+filepath1 <- system.file("extdata", "NC_000012.12[6784836..6825489].fa", package="Biostrings")
+fasta.seqlengths(filepath1, seqtype="DNA")
+x1 <- readDNAStringSet(filepath1)
+x1
+```
+
+
+```{r test}
+mySequenceFile <- system.file("examples", "exampleAA.fasta", package="msa")
+mySequences <- readAAStringSet(mySequenceFile)
+mySequences
+myFirstAlignment <- msa(mySequences)
+print(myFirstAlignment, show="complete")
+```
+
