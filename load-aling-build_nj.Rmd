@@ -11,7 +11,7 @@ install.packages("seqinr")
 ```
 
 ```{r load-packages}
-#library(ape)
+library(ape)
 #library(seqinr)
 library(Biostrings)
 library(msa)
@@ -23,6 +23,10 @@ library(msa)
 ```{r load_alignt_MSA}
 cd4_stringset <- readDNAStringSet(list.files(pattern = "fa"))
 cd4_ClustalW <- msa(cd4_stringset, method="ClustalW")
+msaPrettyPrint(cd4_ClustalW)
+```
 
+```{r distance_matrix_calculation}
+cd4_ClustalW@unmasked@ranges@NAMES
 ```
 

@@ -1,1 +1,0 @@
-{"frames":[{"func":"bionj(cd4_ClustalW)","file":"","line_number":0,"end_line_number":0,"character_number":0,"end_character_number":0}],"message":"Error in X > 100 : \n  comparison (6) is possible only for atomic and list types\n"}

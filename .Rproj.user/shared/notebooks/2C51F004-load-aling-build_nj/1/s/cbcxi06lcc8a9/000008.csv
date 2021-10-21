@@ -1,4 +1,0 @@
-"0","cd4_ClustalW <- msa(cd4_stringset, method=""ClustalW"")
-"
-"1","use default substitution matrix
-"
