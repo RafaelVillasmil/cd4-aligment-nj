@@ -20,10 +20,19 @@ library(msa)
 ```{r read-fasta-files-from-ncbi}
 ```
 
-```{r load_alignt_MSA}
-cd4_stringset <- readDNAStringSet(list.files(pattern = "fa"))
-cd4_ClustalW <- msa(cd4_stringset, method="ClustalW") 
-working_clustalW <- cd4_ClustalW
+```{r load_seq_of_paper_species}
+setwd("~/GitHub/cd4-aligment-nj/speciens _in_paper")
+cd4_stringset_paper <- readDNAStringSet(list.files(pattern = "fa"))
+cd4_stringset_paper <- readDNAStringSet(list.files(pattern = "fa"))
+cd4_stringset_paper@ranges@NAMES
+cd4_stringset_paper@ranges@width
+cd4_ClustalW_paper <- msa(cd4_stringset_paper, method="ClustalW") 
+working_clustalW <- cd4_ClustalW_paper
+rownames(working_clustalW) <- c( "Mouse","Norway rat", "Human","Chimpanzee", "Rhesus monkey","Pig","Cattle", "Dog","Rabbit", "Chicken")
+autoMasked <- maskGaps(working_clustalW, min.fraction=0.5, min.block.width=4)
+sdist <- stringDist(as(autoMasked,"DNAStringSet"), method="hamming")
+cd4_nj <- nj(sdist)
+plot(cd4_nj)
 ```
 
 
