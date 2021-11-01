@@ -1,0 +1,2 @@
+gene_id	gene_symbol	description	scientific_name	common_name	tax_id	genomic_range	orientation	location	gene_type	transcript_accession	transcript_name	transcript_length	transcript_cds_coords	protein_accession	isoform_name	protein_length	protein_name
+100970574	CD4	CD4 molecule	Pan paniscus	pygmy chimpanzee	9597	NC_048251.1:6920587-6951814	+	chr 12	PROTEIN_CODING	XM_008973678.2		3112	XM_008973678.2:253-1629	XP_008971926.1		458	T-cell surface glycoprotein CD4

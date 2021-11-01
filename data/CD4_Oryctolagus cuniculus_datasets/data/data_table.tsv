@@ -1,0 +1,2 @@
+gene_id	gene_symbol	description	scientific_name	common_name	tax_id	genomic_range	orientation	location	gene_type	transcript_accession	transcript_name	transcript_length	transcript_cds_coords	protein_accession	isoform_name	protein_length	protein_name
+100009152	CD4	CD4 molecule	Oryctolagus cuniculus	rabbit	9986	NC_013676.1:32816573-32840063	+	chr 8	PROTEIN_CODING	NM_001082313.2		1497	NM_001082313.2:66-1445	NP_001075782.1		459	T-cell surface glycoprotein CD4 precursor

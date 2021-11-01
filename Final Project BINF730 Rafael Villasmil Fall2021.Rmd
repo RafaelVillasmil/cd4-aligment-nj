@@ -1,0 +1,25 @@
+---
+title: "Final Project BINF730 Rafael Villasmil Fall2021"
+author: "Rafael Villasmil"
+date: "10/24/2021"
+output: pdf_document
+---
+
+```{r}
+library(ape)
+library(msa)
+library(Biostrings)
+library(seqinr)
+library(protr)
+```
+
+```{r }
+cd4_sequences_orginal_species <- 
+  read.FASTA("cd4_sequences_original_species.fasta", type = "DNA")
+cd4_similarities_original_species <- 
+  parSeqSim(cd4_sequences_orginal_species, cores = 20, type = "global", 
+            submat = "BLOSUM62", verbose = TRUE, gap.opening = 1,
+            gap.extension =2)
+cd4_similarities_original_species
+```
+

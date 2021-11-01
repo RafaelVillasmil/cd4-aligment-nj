@@ -1,6 +1,6 @@
 {
     "installOptions": {
-        "installFromRepository": false,
+        "installFromRepository": true,
         "libraryPath": "C:/Users/villasmilr/Documents/R/R-4.1.1/library",
         "installDependencies": true
     }

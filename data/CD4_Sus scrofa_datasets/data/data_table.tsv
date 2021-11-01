@@ -1,0 +1,6 @@
+gene_id	gene_symbol	description	scientific_name	common_name	tax_id	genomic_range	orientation	location	gene_type	transcript_accession	transcript_name	transcript_length	transcript_cds_coords	protein_accession	isoform_name	protein_length	protein_name
+404704	CD4	CD4 molecule	Sus scrofa	pig	9823	NC_010447.5:63892129-63918547	-	chr 5	PROTEIN_CODING	XR_002343823.1	transcript variant X4	2668					
+404704	CD4	CD4 molecule	Sus scrofa	pig	9823	NC_010447.5:63892129-63918547	-	chr 5	PROTEIN_CODING	XM_021091199.1	transcript variant X3	2946	XM_021091199.1:242-1435	XP_020946858.1	isoform X2	397	T-cell surface glycoprotein CD4
+404704	CD4	CD4 molecule	Sus scrofa	pig	9823	NC_010447.5:63892129-63918547	-	chr 5	PROTEIN_CODING	XM_005652590.3	transcript variant X1	3067	XM_005652590.3:241-1614	XP_005652647.1	isoform X1	457	T-cell surface glycoprotein CD4
+404704	CD4	CD4 molecule	Sus scrofa	pig	9823	NC_010447.5:63892129-63918547	-	chr 5	PROTEIN_CODING	NM_001001908.2		2709	NM_001001908.2:161-1534	NP_001001908.2		457	T-cell surface glycoprotein CD4 precursor
+404704	CD4	CD4 molecule	Sus scrofa	pig	9823	NC_010447.5:63892129-63918547	-	chr 5	PROTEIN_CODING	XM_021091198.1	transcript variant X2	2886	XM_021091198.1:60-1433	XP_020946857.1	isoform X1	457	T-cell surface glycoprotein CD4

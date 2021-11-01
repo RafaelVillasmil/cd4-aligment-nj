@@ -1,0 +1,4 @@
+gene_id	gene_symbol	description	scientific_name	common_name	tax_id	genomic_range	orientation	location	gene_type	transcript_accession	transcript_name	transcript_length	transcript_cds_coords	protein_accession	isoform_name	protein_length	protein_name
+12504	Cd4	CD4 antigen	Mus musculus	house mouse	10090	NC_000072.7:124841656-124865210	-	chr 6	PROTEIN_CODING	NM_013488.3		3086	NM_013488.3:161-1534	NP_038516.1		457	T-cell surface glycoprotein CD4 precursor
+12504	Cd4	CD4 antigen	Mus musculus	house mouse	10090	NC_000072.7:124841656-124865210	-	chr 6	PROTEIN_CODING	XM_006505462.2	transcript variant X2	3211	XM_006505462.2:207-1607	XP_006505525.1	isoform X2	466	T-cell surface glycoprotein CD4
+12504	Cd4	CD4 antigen	Mus musculus	house mouse	10090	NC_000072.7:124841656-124865210	-	chr 6	PROTEIN_CODING	XM_006505461.4	transcript variant X1	1806	XM_006505461.4:208-1611	XP_006505524.1	isoform X1	467	T-cell surface glycoprotein CD4

@@ -1,0 +1,4 @@
+gene_id	gene_symbol	description	scientific_name	common_name	tax_id	genomic_range	orientation	location	gene_type	transcript_accession	transcript_name	transcript_length	transcript_cds_coords	protein_accession	isoform_name	protein_length	protein_name
+24932	Cd4	Cd4 molecule	Rattus norvegicus	Norway rat	10116	NC_051339.1:157668878-157695366	-	chr 4	PROTEIN_CODING	XM_006237331.4	transcript variant X1	3192	XM_006237331.4:311-1684	XP_006237393.1	isoform X1	457	T-cell surface glycoprotein CD4
+24932	Cd4	Cd4 molecule	Rattus norvegicus	Norway rat	10116	NC_051339.1:157668878-157695366	-	chr 4	PROTEIN_CODING	NM_012705.1		1749	NM_012705.1:54-1427	NP_036837.1		457	T-cell surface glycoprotein CD4 precursor
+24932	Cd4	Cd4 molecule	Rattus norvegicus	Norway rat	10116	NC_051339.1:157668878-157695366	-	chr 4	PROTEIN_CODING	XM_039107080.1	transcript variant X2	1626	XM_039107080.1:229-1551	XP_038963008.1	isoform X2	440	T-cell surface glycoprotein CD4

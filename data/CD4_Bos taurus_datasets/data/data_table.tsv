@@ -1,0 +1,5 @@
+gene_id	gene_symbol	description	scientific_name	common_name	tax_id	genomic_range	orientation	location	gene_type	transcript_accession	transcript_name	transcript_length	transcript_cds_coords	protein_accession	isoform_name	protein_length	protein_name
+407098	CD4	CD4 molecule	Bos taurus	cattle	9913	NC_037332.1:103631358-103654819	-	chr 5	PROTEIN_CODING	XM_024991418.1	transcript variant X3	3170	XM_024991418.1:217-1404	XP_024847186.1	isoform X2	395	T-cell surface glycoprotein CD4
+407098	CD4	CD4 molecule	Bos taurus	cattle	9913	NC_037332.1:103631358-103654819	-	chr 5	PROTEIN_CODING	XM_024991416.1	transcript variant X1	3292	XM_024991416.1:217-1584	XP_024847184.1	isoform X1	455	T-cell surface glycoprotein CD4
+407098	CD4	CD4 molecule	Bos taurus	cattle	9913	NC_037332.1:103631358-103654819	-	chr 5	PROTEIN_CODING	XM_024991417.1	transcript variant X2	3278	XM_024991417.1:203-1570	XP_024847185.1	isoform X1	455	T-cell surface glycoprotein CD4
+407098	CD4	CD4 molecule	Bos taurus	cattle	9913	NC_037332.1:103631358-103654819	-	chr 5	PROTEIN_CODING	NM_001103225.1		2988	NM_001103225.1:4-1191	NP_001096695.1		395	T-cell surface glycoprotein CD4 precursor
