@@ -61,14 +61,51 @@ cd4_nj <- nj(sdist)
 plot(cd4_nj)
 ```
 
-```{r}
-library(stats)
-library(ade4)
-library(ape)
-library(adegenet)
-library(phangorn)
 
+https://stackoverflow.com/questions/35016713/how-do-i-import-a-jsonl-file-in-r-and-how-do-i-transform-it-in-csv
+```{r}
+library(jsonlite)
+library(dplyr)
+
+list_directories <- 
+  list.dirs(path = "C:/Users/villasmilr/Documents/GitHub/cd4-aligment-nj/data")
+jsnol_directories <- list_directories[seq(3, 41, by = 2)]
+
+table1 <- matrix(ncol = 8)
+colnames(table1) <- c("Species", "Chromosome", "Gene_length", "No.of_exon", 
+                      "Exon(bp)","Coding_region_(bp)", "Intron(bp)", "UTR(bp)")
+table1 <- as.data.frame(table1)
+ for (i in 1:length(jsnol_directories)){
+  lines <- readLines(paste(jsnol_directories[i], "/data_report.jsonl", sep= ""))
+  lines <- lapply(lines, fromJSON)
+  lines <- lapply(lines, unlist)
+  data_report <- bind_rows(lines)
+  
+  gene <- readDNAStringSet(paste(jsnol_directories[i], "/gene.fna", sep= ""))
+  protein <- 
+    readAAStringSet(paste(jsnol_directories[i], "/protein.faa", sep= ""))
+  rna <- readRNAStringSet(paste(jsnol_directories[i], "/rna.fna", sep= ""))
+  
+  table1[i,"Species"] <- data_report$taxname
+  table1[i,"Chromosome"] <- data_report$chromosomes
+  table1[i,"Gene_length"] <- gene@ranges@width[1]
+  table1[i,"Coding_region_(bp)"] <- rna@ranges@width[1]
+  
+}
+
+
+```
+
+
+
+
+
+
+```{r protr_package}
+library(protr)
+
+setwd("~/GitHub/cd4-aligment-nj/data")
 cd4_seq <- c(list.files(pattern = "fa"))
-cd4_dna <- read.dna(cd4_stringset)
+cd4_dna <- read.dna(list.files(pattern = "fa"))
 ```
 
