@@ -71,10 +71,10 @@ list_directories <-
   list.dirs(path = "C:/Users/villasmilr/Documents/GitHub/cd4-aligment-nj/data")
 jsnol_directories <- list_directories[seq(3, 41, by = 2)]
 
-table1 <- matrix(ncol = 8)
-colnames(table1) <- c("Species", "Chromosome", "Gene_length", "No.of_exon", 
+table_1all <- matrix(ncol = 8)
+colnames(table_1all) <- c("Species", "Chromosome", "Gene_length", "No.of_exon", 
                       "Exon(bp)","Coding_region_(bp)", "Intron(bp)", "UTR(bp)")
-table1 <- as.data.frame(table1)
+table_1all <- as.data.frame(table_1all)
  for (i in 1:length(jsnol_directories)){
   lines <- readLines(paste(jsnol_directories[i], "/data_report.jsonl", sep= ""))
   lines <- lapply(lines, fromJSON)
@@ -85,13 +85,45 @@ table1 <- as.data.frame(table1)
   protein <- 
     readAAStringSet(paste(jsnol_directories[i], "/protein.faa", sep= ""))
   rna <- readRNAStringSet(paste(jsnol_directories[i], "/rna.fna", sep= ""))
+  data_table <- read.delim(paste(jsnol_directories[i], "/data_table.tsv", 
+                                 sep= ""), 
+                           header = TRUE, stringsAsFactors = FALSE, quote = "", 
+                           sep = "\t")
   
-  table1[i,"Species"] <- data_report$taxname
-  table1[i,"Chromosome"] <- data_report$chromosomes
-  table1[i,"Gene_length"] <- gene@ranges@width[1]
-  table1[i,"Coding_region_(bp)"] <- rna@ranges@width[1]
+  table_1all[i,"Species"] <- data_report$taxname
+  table_1all[i,"Chromosome"] <- data_report$chromosomes
+  table_1all[i,"Exon(bp)"] <- data_table$transcript_length[1]
+  table_1all[i,"Gene_length"] <- gene@ranges@width[1]
+  table_1all[i,"Coding_region_(bp)"] <- rna@ranges@width[1]
   
 }
+
+list_species <- c("Bos taurus",              "Canis lupus familiaris", 
+                  "Chlorocebus sabaeus",     "Gallus gallus",         
+                  "Gorilla gorilla",         "Homo sapiens",           
+                  "Hylobates moloch",        "Macaca mulatta",         
+                  "Macaca nemestrina",       "Monodelphis domestica",  
+                  "Mus musculus",            "Nomascus leucogenys",    
+                  "Oryctolagus cuniculus",   "Pan paniscus",           
+                  "Pan troglodytes",         "Pongo abelii",           
+                  "Rattus norvegicus",       "Rhinopithecus bieti",    
+                  "Rhinopithecus roxellana", "Sus scrofa")
+
+No.of_exon <- c(11, 11,
+                10, 11,
+                11, 11,
+                10, 11,
+                12, 14,
+                10, 10,
+                10, 10,
+                11, 10,
+                11, 11,
+                11, 10)
+
+table_1all$
+table_1all$`Intron(bp)` <- table_1all$Gene_length - table_1all$`Exon(bp)`
+table_1all$`UTR(bp)` <- table_1all$`Exon(bp)` - table_1all$`Coding_region_(bp)`
+
 
 
 ```
