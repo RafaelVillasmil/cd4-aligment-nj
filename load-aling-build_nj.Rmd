@@ -15,17 +15,15 @@ library(ape)
 #library(seqinr)
 library(Biostrings)
 library(msa)
+library(ggpubr)
 ```
 
 ```{r read-fasta-files-from-ncbi}
 ```
 
 ```{r load_seq_of_paper_species}
-setwd("~/GitHub/cd4-aligment-nj/speciens _in_paper")
+setwd("~/GitHub/cd4-aligment-nj/speciens_in_paper")
 cd4_stringset_paper <- readDNAStringSet(list.files(pattern = "fa"))
-cd4_stringset_paper <- readDNAStringSet(list.files(pattern = "fa"))
-cd4_stringset_paper@ranges@NAMES
-cd4_stringset_paper@ranges@width
 cd4_ClustalW_paper <- msa(cd4_stringset_paper, method="ClustalW") 
 working_clustalW <- cd4_ClustalW_paper
 rownames(working_clustalW) <- c( "Mouse","Norway rat", "Human","Chimpanzee", "Rhesus monkey","Pig","Cattle", "Dog","Rabbit", "Chicken")
@@ -75,6 +73,7 @@ table_1all <- matrix(ncol = 8)
 colnames(table_1all) <- c("Species", "Chromosome", "Gene_length", "No.of_exon", 
                       "Exon(bp)","Coding_region_(bp)", "Intron(bp)", "UTR(bp)")
 table_1all <- as.data.frame(table_1all)
+
  for (i in 1:length(jsnol_directories)){
   lines <- readLines(paste(jsnol_directories[i], "/data_report.jsonl", sep= ""))
   lines <- lapply(lines, fromJSON)
@@ -120,16 +119,108 @@ No.of_exon <- c(11, 11,
                 11, 11,
                 11, 10)
 
-table_1all$
+table_1all$No.of_exon <- No.of_exon
 table_1all$`Intron(bp)` <- table_1all$Gene_length - table_1all$`Exon(bp)`
 table_1all$`UTR(bp)` <- table_1all$`Exon(bp)` - table_1all$`Coding_region_(bp)`
 
+list_ori_species <- c("Homo sapiens", "Pan troglodytes",
+                      "Macaca mulatta", "Canis lupus familiaris", 
+                      "Bos taurus","Sus scrofa",
+                      "Monodelphis domestica", "Oryctolagus cuniculus",
+                      "Mus musculus","Rattus norvegicus", "Gallus gallus")
+
+list_primate_species <- c("Homo sapiens", "Chlorocebus sabaeus",            
+                          "Gorilla gorilla", "Hylobates moloch",                 
+                          "Macaca mulatta", "Macaca nemestrina",       
+                          "Nomascus leucogenys", "Pan paniscus",           
+                          "Pan troglodytes", "Pongo abelii", 
+                          "Rhinopithecus bieti","Rhinopithecus roxellana")
 
 
+# make table 1 with original species 
+table_1ori <- matrix(NA, ncol = ncol(table_1all), nrow =0 )
+colnames(table_1ori) <- colnames(table_1all)
+for (i in 1:length(list_ori_species)){
+  table_1ori <- 
+    rbind(table_1ori, 
+          table_1all[which(grepl(list_ori_species[i], table_1all$Species)),])
+}
+write.csv(table_1ori,"~/GitHub/cd4-aligment-nj/Table 1 orginal species.csv", 
+          row.names = TRUE)
+
+# make table 1 with new species 
+table_1primates <- matrix(NA, ncol = ncol(table_1all), nrow =0 )
+colnames(table_1primates) <- colnames(table_1all)
+for (i in 1:length(list_ori_species)){
+  table_1primates <- 
+    rbind(table_1primates, 
+          table_1all[which(grepl(list_primate_species[i], 
+                                 table_1all$Species)),])
+}
+write.csv(table_1primates,
+          "~/GitHub/cd4-aligment-nj/Table 1 primates.csv", row.names = TRUE)
+```
+
+
+```{r paper_comparisons}
+# minimun gene length 
+table_1all[which(grepl(min(table_1ori$Gene_length), 
+                                 table_1all$Gene_length)),]
+
+# maximun gene length 
+table_1all[which(grepl(max(table_1ori$Gene_length), 
+                                 table_1all$Gene_length)),]
 ```
 
 
 
+```{r correlation between }
+# original assertion 
+ggscatter(table_1ori, x = "Gene_length", y = "Intron(bp)", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "Gene Length", ylab = "Intron (bp)") + 
+  labs(title = "Original Species With Data as of Nov 2021")
+
+# exon in original species
+ggscatter(table_1ori, x = "Gene_length", y = "Exon(bp)", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "Gene Length", ylab = "Exon (bp)") + 
+  labs(title = "Original Species With Data as of Nov 2021")
+
+# what about new data 
+ggscatter(table_1primates, x = "Gene_length", y = "Intron(bp)", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "Gene Length", ylab = "Intron (bp)") + 
+  labs(title = "Primates With Data as of Nov 2021")
+
+ggscatter(table_1primates, x = "Gene_length", y = "Exon(bp)", 
+          add = "reg.line", conf.int = TRUE, 
+          cor.coef = TRUE, cor.method = "pearson",
+          xlab = "Gene Length", ylab = "Exon (bp)") + 
+  labs(title = "Primates With Data as of Nov 2021")
+```
+
+```{r aling_and_build_phylo_tree_with_data_in_data}
+setwd("~/GitHub/cd4-aligment-nj/data/dna_original")
+gene_ori <- readDNAStringSet(list.files(pattern = "fna"))
+# clustalW_ori <- msa(gene_ori, method="ClustalW") 
+autoMasked <- maskGaps(clustalW_ori, min.fraction=0.5, min.block.width=4)
+sdist <- stringDist(as(autoMasked,"DNAStringSet"), method="hamming")
+nj_ori <- nj(sdist)
+nj_ori$tip.label <- sub(".*organism=","",nj_ori$tip.label)
+plot(nj_ori)
+
+setwd("~/GitHub/cd4-aligment-nj/data/dna_primates")
+gene_primates <- readDNAStringSet(list.files(pattern = "fna"))
+# clustalW_ori <- msa(gene_primates, method="ClustalW") 
+autoMasked <- maskGaps(clustalW_ori, min.fraction=0.5, min.block.width=4)
+sdist <- stringDist(as(autoMasked,"DNAStringSet"), method="hamming")
+nj_primates <- nj(sdist)
+plot(nj_primates)
+```
 
 
 

@@ -1,0 +1,12 @@
+"","Species","Chromosome","Gene_length","No.of_exon","Exon(bp)","Coding_region_(bp)","Intron(bp)","UTR(bp)"
+"6","Homo sapiens","12",31272,11,3135,2442,28137,693
+"15","Pan troglodytes","12",31245,11,3337,2620,27908,717
+"8","Macaca mulatta","11",32901,11,3131,2446,29770,685
+"2","Canis lupus familiaris","27",51108,11,1655,1296,49453,359
+"1","Bos taurus","5",23462,11,3170,2491,20292,679
+"20","Sus scrofa","5",26419,10,2668,2131,23751,537
+"10","Monodelphis domestica","8",40545,14,3916,2824,36629,1092
+"13","Oryctolagus cuniculus","8",23491,10,1497,1218,21994,279
+"11","Mus musculus","6",23555,10,3086,2388,20469,698
+"17","Rattus norvegicus","4",26489,11,3192,2480,23297,712
+"4","Gallus gallus","1",11472,11,1989,1493,9483,496

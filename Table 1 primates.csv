@@ -1,0 +1,12 @@
+"","Species","Chromosome","Gene_length","No.of_exon","Exon(bp)","Coding_region_(bp)","Intron(bp)","UTR(bp)"
+"6","Homo sapiens","12",31272,11,3135,2442,28137,693
+"3","Chlorocebus sabaeus","Un",28928,10,3327,2577,25601,750
+"5","Gorilla gorilla","Un",32777,11,3124,2438,29653,686
+"7","Hylobates moloch","Un",33755,10,3077,2408,30678,669
+"8","Macaca mulatta","11",32901,11,3131,2446,29770,685
+"9","Macaca nemestrina","Un",37652,12,3149,2466,34503,683
+"12","Nomascus leucogenys","23",33890,10,3076,2405,30814,671
+"14","Pan paniscus","12",31228,10,3112,2434,28116,678
+"16","Pongo abelii","12",34241,10,2846,2222,31395,624
+"18","Rhinopithecus bieti","Un",34876,11,3130,2438,31746,692
+"19","Rhinopithecus roxellana","10",33680,11,3128,2439,30552,689
