@@ -132,25 +132,47 @@ ggplot(data = table_1ori,
 # original species
 figure_2ori <- ggplot(data = table_1ori, 
        aes(x=`Coding_region_(bp)`, y=`Exon(bp)`, label = Species)) +
-  geom_point(aes(size=Gene_length)) +
+  geom_point(shape = 1, colour = "black", fill = "white", stroke = 1,
+             aes(size=Gene_length)) +
   xlim(1000, 3000) +
   labs(x = "Coding Region (bp)", y = "Exon (bp)", label = "Gene Length") +
-  geom_text_repel(force = 10) + 
+  geom_text_repel(force = 100,
+                  nudge_x = .15,
+                  box.padding = 0.5,
+                  nudge_y = 1,
+                  segment.curvature = -0.1,
+                  segment.ncp = 3,
+                  segment.angle = 20) + 
   theme(legend.position = c(0.9, 0.2))
 
 figure_2ori
+figure_2ori +
+  geom_smooth(method = "lm", se = FALSE, colour = "black")
+
 ggMarginal(figure_2ori, type="boxplot")
 
 # primate species
 figure_2primates <- ggplot(data = table_1primates, 
        aes(x=`Coding_region_(bp)`, y=`Exon(bp)`, label = Species)) +
-  geom_point(aes(size=Gene_length)) +
+  geom_point(shape = 1, colour = "black", fill = "white", stroke = 1, 
+             aes(size=Gene_length), ) +
   xlim(2200, 2700) + ylim(2800, 3400) +
   labs(x = "Coding Region (bp)", y = "Exon (bp)", label = "Gene Length") +
-  geom_text_repel(force = 50) + 
+  geom_text_repel(force = 100,
+                  nudge_x = .15,
+                  box.padding = 0.5,
+                  nudge_y = 1,
+                  segment.curvature = -0.1,
+                  segment.ncp = 3,
+                  segment.angle = 20) + 
   theme(legend.position = c(0.85, 0.3))
 
 figure_2primates
+
+figure_2primates +
+  geom_smooth(method = "lm", se = FALSE, colour = "black")
+
+
 ggMarginal(figure_2primates, type="boxplot")
 ```
 
