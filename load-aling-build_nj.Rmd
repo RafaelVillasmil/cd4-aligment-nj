@@ -135,7 +135,7 @@ figure_2ori <- ggplot(data = table_1ori,
   geom_point(shape = 1, colour = "black", fill = "white", stroke = 1,
              aes(size=Gene_length)) +
   xlim(1000, 3000) +
-  labs(x = "Coding Region (bp)", y = "Exon (bp)", label = "Gene Length") +
+  labs(x = "Coding Region (bp)", y = "Exon (bp)", size = "Gene Length") +
   geom_text_repel(force = 100,
                   nudge_x = .15,
                   box.padding = 0.5,
@@ -155,9 +155,9 @@ ggMarginal(figure_2ori, type="boxplot")
 figure_2primates <- ggplot(data = table_1primates, 
        aes(x=`Coding_region_(bp)`, y=`Exon(bp)`, label = Species)) +
   geom_point(shape = 1, colour = "black", fill = "white", stroke = 1, 
-             aes(size=Gene_length), ) +
+             aes(size=Gene_length)) +
+  labs(x = "Coding Region (bp)", y = "Exon (bp)", size = "Gene Length") +
   xlim(2200, 2700) + ylim(2800, 3400) +
-  labs(x = "Coding Region (bp)", y = "Exon (bp)", label = "Gene Length") +
   geom_text_repel(force = 100,
                   nudge_x = .15,
                   box.padding = 0.5,
@@ -330,6 +330,7 @@ table_2subs_ori <-
                     breaks=c("H", "E", "C"),
                     labels=c("alpha Helix", "beta Sheet", "Coil")) +
   labs(x = NULL, y = "Fraction", fill = NULL) +
+  theme(legend.position="top") + guides(fill = guide_legend(reverse = TRUE)) +
   coord_flip()
 
 table_2subs_ori
@@ -341,9 +342,51 @@ table_2subs_primates <-
   scale_fill_manual(values = c("grey10", "grey34", "grey67"),
                     breaks=c("H", "E", "C"),
                     labels=c("alpha Helix", "beta Sheet", "Coil")) +
+
   labs(x = NULL, y = "Fraction", fill = NULL) +
+  theme(legend.position="top") + guides(fill = guide_legend(reverse = TRUE)) +
   coord_flip()
 
 table_2subs_primates
+
+# find the outliers
+is_outlier <- function(x) {
+  return(x < quantile(x, 0.25) - 1.5 * IQR(x) | x > 
+           quantile(x, 0.75) + 1.5 * IQR(x))
+}
+
+#create a data set for box plot figure 5
+dat <- melt(table_2ori_perc)
+outlier <- dat$Species
+dat <- cbind(outlier, dat)
+dat <- dat  %>% group_by(variable) %>% 
+  mutate(is_outlier=ifelse(is_outlier(value), value, as.numeric(NA)))
+dat$outlier[which(is.na(dat$is_outlier))] <- as.numeric(NA)
+
+fig5_ori <-
+  ggplot(dat, aes(x=variable, y=value)) +
+  geom_boxplot() + labs(x = NULL, y = "Fraction") +
+  scale_x_discrete(labels = c("alpha Helix", "beta Sheet", "Coil")) +
+  geom_text(aes(label=outlier),na.rm=TRUE,nudge_y =.01)
+
+fig5_ori
+
+#create a data set for box plot figure 5
+
+dat <- melt(table_2primates_perc)
+outlier <- dat$Species
+dat <- cbind(outlier, dat)
+dat <- dat  %>% group_by(variable) %>% 
+  mutate(is_outlier=ifelse(is_outlier(value), value, as.numeric(NA)))
+dat$outlier[which(is.na(dat$is_outlier))] <- as.numeric(NA)
+
+fig5_ori <-
+  ggplot(dat, aes(x=variable, y=value)) +
+  geom_boxplot() + labs(x = NULL, y = "Fraction") +
+  scale_x_discrete(labels = c("alpha Helix", "beta Sheet", "Coil")) +
+  geom_text(aes(label=outlier),na.rm=TRUE,nudge_y =.01)
+
+fig5_ori
+
 ```
 
